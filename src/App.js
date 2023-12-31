@@ -1,24 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import SongList from './SongList';
+import SongDetails from './SongDetails';
+import { useSelector } from 'react-redux';
+import EditSong from './EditSong';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  let selected = useSelector(state => state.selectedSong)
+  let selectedForEdit = useSelector(state => state.selectedSongForEdit)
+
+  return (<>
+    <SongList />
+    {selected && <SongDetails />}
+    {selectedForEdit&&<EditSong/>}
+  </>
   );
 }
 
